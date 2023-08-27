@@ -111,7 +111,11 @@ function sendMail($id, $email, $name, $VN, $timeslot)
                 
                 <p>To complete the booking process, we kindly request you to visit our office and collect a hardcopy of the booking receipt. You can collect the original hardcopy from Hemal Patel, our authorized representative, who will be available during office hours.</p>
                 
+<<<<<<< HEAD
                 <p>If you have any questions or require further assistance, please do not hesitate to contact our customer service at  <mark><a href="tel:+919876543210">+91 9876543210</a></mark></p>
+=======
+                <p>If you have any questions or require further assistance, please do not hesitate to contact our customer service at  <mark><a href="tel:+000000000">0000000000</a></mark></p>
+>>>>>>> 18c06beb7eebb7c4c4cfb7124e1b921b0d4ea438
                 
                 <p>Best regards,<br>
                 <b>Patel Motor Driving School</b></p>
