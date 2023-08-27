@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+  
+  table th,
+  table td {
+    padding: 8px;
+    border: 1px solid #000000;
+  }
+  
+  table th {
+    background-color: lightgrey;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  table td {
+    text-align: left;
+  }
+  
+  @media only screen and (max-width: 768px) {
+    table {
+      font-size: 12px;
+    }
+    
+    table th,
+    table td {
+      padding: 6px;
+    }
+  }
+  

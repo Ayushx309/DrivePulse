@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{
+   font-family: 'Poppins', sans-serif;
+   margin: 0px; 
+   padding: 0px;
+
+   box-sizing: border-box;
+   /* outline: solid black; border:none; */
+   text-decoration: none;
+
+}
+
+/* body {
+    position: absolute;
+  } */
+
+/* ######################## header ########################  */
+
+.header .container{
+    height: 90px;
+    width: 100%;
+    background-color: #333;
+    color: #fff;
+    
+}
+
+.header .container .content h3 span{
+    background: #46abcc;
+    color:#fff;
+    border-radius: 10px;
+    padding: 2px 15px;
+
+ }
+ 
+
+
+
+ .header .container .content{
+    height: 90px;
+    width: 100vw;
+    padding: 10px;
+    
+}
+
+.header .container .content {
+    display: flex;
+
+    justify-content: center;
+    list-style: none;
+}
+.header .container .content nav{
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.header .container .content nav ul {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    
+
+}
+
+.header .container .content nav ul li{
+    margin: 30px;
+}
+
+.header .container .content nav ul #nimgAndText{
+    display: flex;
+    flex-direction: row;
+    width: 200px;
+}
+
+.header-text{
+    text-align: center;
+
+}
+
+.header-text h5{
+    background: #46abcc;
+    color:#fff;
+    border-radius: 10px;
+    padding: 2px 15px;
+}
+
+.btn{
+    padding: 10px;
+    margin-left: 7px;
+    margin-right: 7px;
+    background: #46abcc;
+    color: #fff;
+    text-transform: capitalize;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all 0.5s;
+    border-radius: 9px;
+
+
+ }
+ 
+.btn:hover{
+    background: crimson;
+    color:#fff;
+ } 
+
+
+ /* ########################### control-panel ########################## */
+
+
+ .control-panel .header{
+    display: flex;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    padding: 10px;
+    background: #121212;
+    color: #fff;
+overflow: hidden;
+
+ }

@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+.container {
+  min-height: 25vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  padding-bottom: 60px;
+  gap: 30px;
+}
+.container .form-container{
+  max-width: 800px;
+}
+
+.container .form-container input {
+  padding: 20px;
+  width: 100%;
+  max-width: 800px;
+  height: 50px;
+  border-radius: 5px;
+  border: 3px solid #525151;
+}
+
+#search_result {
+  color: black;
+  width: 100%;
+  height: 50vh;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#search_result h3 {
+  color: red;
+}
+
+/* Style for the table container */
+.todo {
+  width: 100%;
+}
+
+.todo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style for the table header */
+.todo table thead th {
+  background-color: #f2f2f2;
+  text-align: left;
+  padding: 10px;
+}
+
+/* Style for the table body */
+.todo table tbody td {
+  padding: 10px;
+}
+
+/* Style for the edit and delete buttons */
+.todo table tbody td a.view,
+.full-data a {
+  font-size: 14px;
+  padding: 6px 16px;
+  color: var(--light);
+  border-radius: 8px;
+  font-weight: 200;
+  text-decoration: none;
+  margin-right: 5px;
+  background-color: #46abcc;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+}
+
+.full-data a {
+  border-radius: 20px;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination-link {
+  padding: 8px 12px;
+  margin: 0 5px;
+  color: #fff;
+  text-decoration: none;
+  border: 2px solid #080808;
+  border-radius: 4px;
+  background-color: #525151;
+}
+
+.pagination-link:hover {
+  background-color: #ccc;
+  color: #fff;
+}
+
+.pagination-link.active {
+  background-color: #ccc;
+  color: #fff;
+}
+
+.pagination-link:first-child {
+  margin-right: 10px;
+}
+
+.pagination-link:last-child {
+  margin-left: 10px;
+}
+
+.pagination-container {
+  text-align: center;
+}
+
+/* Responsive Styles */
+
+@media only screen and (max-width: 768px) {
+  .container .form-container input {
+    width: 100%;
+    max-width: 500px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .container .form-container input {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .todo table {
+    font-size: 12px;
+  }
+
+  .todo table th,
+  .todo table td {
+    padding: 8px;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .container .form-container input {
+    width: 100%;
+    max-width: 600px;
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .container .form-container input {
+    width: 100%;
+    max-width: 300px;
+    padding: 10px;
+    height: 40px;
+    font-size: 14px;
+  }
+}

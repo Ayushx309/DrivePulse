@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+* {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+body{
+    background-color: #252525;
+}
+
+.container {
+   
+    width: 100vw;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-content: center;    
+    align-items: flex-start;
+    background: #252525;
+    flex-wrap: wrap;
+}
+.vehicle-list p{
+    align-items: center;
+    display: flex;
+    width: 150px;
+    gap: 20px;
+
+}
+.vehicle-list{
+    display: flex;
+    width: 400px;
+    justify-content: space-around;
+    height: 40px;
+    align-items: center;
+    flex-direction: row;
+}
+
+.Cname {
+    color: #000;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: block;
+    font-weight: bold;
+    font-size: x-large;
+    margin-top: 1.5em;
+}
+
+.card {
+    margin-top: 20px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    min-height: 100vh;
+    width: 50vw;
+    flex-direction: column;
+    gap: 35px;
+    border-radius: 15px;
+    background: #e3e3e3;
+    box-shadow: 7px 7px 25px #c8c8c8,
+    -7px -7px -25px #fefefe;
+    border-radius: 8px;
+}
+
+.card p {
+    text-align: center;
+}
+
+.card .form-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 35px;
+    width: 80vw;
+}
+
+.inputBox,
+.inputBox1 {
+    position: relative;
+    width: 550px;
+
+}
+
+.inputBox input,
+.inputBox1 input {
+    width: 100%;
+    padding: 5px;
+    outline: none;
+    border: none;
+    color: #000;
+    font-size: 1em;
+    background: transparent;
+    border-left: 2px solid #000;
+    border-bottom: 2px solid #000;
+    transition: 0.1s;
+    border-bottom-left-radius: 8px;
+}
+
+.inputBox span,
+.inputBox1 span {
+    margin-top: 5px;
+    position: absolute;
+    left: 0;
+    transform: translateY(-4px);
+    margin-left: 10px;
+    padding: 10px;
+    pointer-events: none;
+    font-size: 10px;
+    color: #000;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 3px;
+    border-radius: 8px;
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+    transform: translateX(213px) translateY(-15px);
+    font-size: 0.6em;
+    padding: 5px 10px;
+    background: #000;
+    letter-spacing: 0.2em;
+    color: #fff;
+    border: 2px;
+}
+
+.inputBox1 input:valid~span,
+.inputBox1 input:focus~span {
+    transform: translateX(456px) translateY(-15px);
+    font-size: 0.6em;
+    padding: 5px 10px;
+    background: #000;
+    letter-spacing: 0.2em;
+    color: #fff;
+    border: 2px;
+}
+
+.inputBox input:valid~span,
+.inputBox input:focus~span {
+    transform: translateX(360px) translateY(-15px);
+    font-size: 0.6em;
+    padding: 5px 10px;
+    background: #000;
+    letter-spacing: 0.2em;
+    color: #fff;
+    border: 2px;
+}
+
+.inputBox input:valid,
+.inputBox input:focus,
+.inputBox1 input:valid,
+.inputBox1 input:focus {
+    border: 2px solid #000;
+    border-radius: 8px;
+}
+
+.enter {
+    height: 45px;
+    width: 150px;
+    border-radius: 5px;
+    border: 2px solid #000;
+    cursor: pointer;
+    background-color: transparent;
+    transition: 0.5s;
+    text-transform: uppercase;
+    font-size: 10px;
+    letter-spacing: 2px;
+    margin-bottom: 3em;
+}
+
+.enter:hover {
+    background-color: rgb(0, 0, 0);
+    color: white;
+}
+
+.checkDateTime p{
+    font-size: 17px;
+    text-align: center;
+}
+
+.checkBoxs{
+    width: 430px;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.checkDateTime {
+    width: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    --input-focus: transparent;
+    --input-out-of-focus: transparent;
+    --bg-color: black;
+    --bg-color-alt: #666;
+    --main-color: #323232;
+    position: relative;
+    cursor: pointer;
+}
+
+
+
+.checkDateTime input {
+    position: absolute;
+    opacity: 0;
+}
+
+.checkmark {
+    width: 15px;
+    height: 15px;
+    position: relative;
+    top: 0;
+    left: 0;
+    border: 2px solid var(--main-color);
+    border-radius: 5px;
+    background-color: var(--input-out-of-focus);
+    transition: all 0.3s;
+}
+
+.checkDateTime input:checked~.checkmark {
+    background-color: var(--input-focus);
+}
+
+.checkmark:after {
+    content: "";
+    width: 5px;
+    height: 12px;
+    position: absolute;
+    top: -5px;
+    left: 4px;
+    display: none;
+    border: solid var(--bg-color);
+    border-width: 0 2.5px 2.5px 0;
+    transform: rotate(45deg);
+}
+
+.checkDateTime input:checked~.checkmark:after {
+    display: block;
+}
