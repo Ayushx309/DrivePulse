@@ -21,7 +21,7 @@ function sendMail($id, $email, $name, $VN, $timeslot)
         $mail->Host = 'smtp.gmail.com'; //Set the SMTP server to send through
         $mail->SMTPAuth = true; //Enable SMTP authentication
         $mail->Username = 'patelmotordrivingschool.noreply@gmail.com'; //SMTP username
-        $mail->Password = 'nrhykqjqpdemtrxt'; //SMTP password
+        $mail->Password = ''; //SMTP password
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; //Enable implicit TLS encryption
         $mail->Port = 465; //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
@@ -111,7 +111,7 @@ function sendMail($id, $email, $name, $VN, $timeslot)
                 
                 <p>To complete the booking process, we kindly request you to visit our office and collect a hardcopy of the booking receipt. You can collect the original hardcopy from Hemal Patel, our authorized representative, who will be available during office hours.</p>
                 
-                <p>If you have any questions or require further assistance, please do not hesitate to contact our customer service at  <mark><a href="tel:+919725603403">+91 9725603403</a></mark></p>
+                <p>If you have any questions or require further assistance, please do not hesitate to contact our customer service at  <mark><a href="tel:+000000000">0000000000</a></mark></p>
                 
                 <p>Best regards,<br>
                 <b>Patel Motor Driving School</b></p>
