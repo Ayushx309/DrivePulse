@@ -1,4 +1,23 @@
-# SET @num := 0;
-# UPDATE tablename SET id = @num := (@num+1);
-# ALTER TABLE tablename AUTO_INCREMENT = 1;
-# to reset the AUTO_INCREMENT
+# DrivePulse - Requirements
+
+## Backend Dependencies (PHP):
+php >= 7.0
+phpmailer/phpmailer ^6.5
+fzaninotto/faker ^1.9
+dompdf/dompdf ^1.0
+
+## Frontend Dependencies:
+bootstrap ^5.0
+jquery ^3.6
+popper.js ^1.16
+font-awesome ^5.15
+
+## Database:
+mysql >= 5.7
+
+## Package Managers (For Frontend):
+npm >= 6.0 (for managing JavaScript libraries)
+composer >= 1.10 (for managing PHP packages)
+
+## Web Server Environment:
+XAMPP, WAMP, MAMP (Choose one based on your OS)

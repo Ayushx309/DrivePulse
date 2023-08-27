@@ -1,5 +1,7 @@
 # DrivePulse - Driving School Management System
 
+![](https://cdn.discordapp.com/attachments/1144273100112932914/1145293309225467914/20230827_151607.png)
+
 Comprehensive Driving School Management Website
 
 DrivePulse is a comprehensive driving school management system designed to streamline administrative tasks, enhance communication between trainers and learners, and provide a user-friendly experience for all stakeholders. The system is built using a combination of HTML, CSS, JavaScript, PHP, and MySQL, along with various libraries and tools to optimize functionality.
