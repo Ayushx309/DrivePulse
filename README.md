@@ -1,6 +1,6 @@
 # DrivePulse - Driving School Management System
 
-![](https://cdn.discordapp.com/attachments/1144273100112932914/1145293309225467914/20230827_151607.png)
+![](https://cdn.discordapp.com/attachments/839435729993072660/1157034938504314880/20230929_005212__01.png?ex=65172442&is=6515d2c2&hm=87418c5e01276643c8ba46bb7d3c1f2c0555b0bf72b30466cebe233386a703e7&)
 
 Comprehensive Driving School Management Website
 
