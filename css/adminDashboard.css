@@ -392,7 +392,7 @@ body {
 
 #content main .head-title .left .breadcrumb li a {
 	color: var(--dark-grey);
-	pointer-events: none;
+	
 }
 
 #content main .head-title .left .breadcrumb li a.active {
@@ -420,7 +420,7 @@ body {
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	grid-gap: 24px;
-	margin-top: 36px;
+	margin-top: 20px;
 }
 
 #content main .box-info li {
@@ -493,6 +493,7 @@ body {
 	align-items: center;
 	grid-gap: 16px;
 	margin-bottom: 24px;
+	border-radius: 13px;
 }
 
 #content main .table-data .head h3 {

@@ -1,3 +1,79 @@
+<?php
+
+session_start();
+function logActivity($logType, $who, $activity)
+{
+    date_default_timezone_set('Asia/Kolkata');
+
+    $logFolder = '../../logs/' . $logType;
+
+    if (!file_exists($logFolder)) {
+        mkdir($logFolder, 0755, true);
+    }
+
+    $logFile = $logFolder . '/logs.json';
+
+    // Read existing log entries from the file, or create an empty array if the file doesn't exist
+    $existingLogs = file_exists($logFile) ? json_decode(file_get_contents($logFile), true) : [];
+
+    $logEntry = [
+        'timestamp' => date('Y-m-d H:i:s'),
+        'who' => $who,
+        'activity' => $activity,
+    ];
+
+    // Append the new log entry to the existing logs array
+    // $existingLogs[] = $logEntry;
+    array_unshift($existingLogs, $logEntry);
+    // Save the updated logs array back to the file
+    file_put_contents($logFile, json_encode($existingLogs, JSON_PRETTY_PRINT));
+}
+
+
+
+if (isset($_POST['edit'])) {
+    $id = $_POST['id'];
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+
+
+
+
+    $conn = mysqli_connect("localhost", "root", "", "billing");
+
+    // Personal Details
+    $name = $_POST['name'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+
+    // Booking Details
+    $totalA = $_POST['totalamount'];
+    $paidA = $_POST['paidamount'];
+    $dueA = $totalA - $paidA;
+    $days = $_POST['days'];
+    $timeSlot = $_POST['time-slot'];
+    $vehicle = $_POST['vehicle'];
+    $boolLicence = $_POST['newlicence'];
+    $trainername = $_POST['trainername'];
+    $trainerphone = $_POST['trainerphone'];
+    $formfiller = $_POST['formfiller'];
+
+    $update = "UPDATE `cust_details` SET `name`='$name',`email`='$email',`phone`='$phone',`address`='$address',`totalamount`='$totalA',`paidamount`='$paidA',`dueamount`='$dueA',`days`='$days',`timeslot`='$timeSlot',`vehicle`='$vehicle',`newlicence`='$boolLicence',`trainername`='$trainername',`trainerphone`='$trainerphone',`formfiller`='$formfiller' WHERE `id`='$id' ";
+    $result = mysqli_query($conn, $update);
+    if (!$result) {
+        die("Error updating row: " . mysqli_error($conn));
+    } else {
+        header('location:' . $_GET['route']);
+    }
+}
+
+
+
+
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -69,14 +145,15 @@
             font-weight: bold;
         }
 
-        .profile-details input,select {
+        .profile-details input,
+        select {
             padding: 8px;
             max-width: 500px;
             width: 100%;
             font-size: 20px;
 
         }
-      
+
 
         .profile-buttons {
             margin-top: -5px;
@@ -96,9 +173,9 @@
             text-align: center;
         }
 
-        .profile-buttons .edit-btn {
+        .profile-buttons .edit-btn,
+        .profile-buttons .delete-btn {
 
-            background-color: #4CAF50;
             color: #fff;
             font-size: 20px;
 
@@ -119,10 +196,56 @@
         }
 
 
+        /* Style the profile-buttons container */
+        .profile-buttons {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 20px;
+        }
 
+        /* Style the edit button */
+        .edit-btn {
+            width: 350px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: all .3s;
 
-    
+        }
+
+        /* Add hover effect to the edit button */
+        .edit-btn:hover {
+            background-color: #45a049;
+        }
+
+        .delete-btn {
+            width: 350px;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            font-weight: bold;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: all .3s;
+
+        }
+
+        /* Add hover effect to the delete button */
+        .delete-btn:hover {
+            background-color: #db0000;
+        }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link rel="stylesheet" href="../../css/navbar.css">
 </head>
 
@@ -130,14 +253,14 @@
 
     <section id="content">
         <nav>
-            <a class="home-link" href="<?php echo "../"?>">
+            <a class="home-link" href="<?php echo $_GET['route'] ?>">
                 Back
             </a>
             <span class="text">
                 <h3>Patel Motor Driving School</h3>
 
             </span>
-            <a href="#" class="profile">
+            <a href="../" class="profile">
                 <img src="../../assets/logoBlack.png">
             </a>
         </nav>
@@ -159,12 +282,11 @@
     ?>
     <div class="profile-container">
         <div class="profile-image">
-            <img src="https://www.gravatar.com/avatar/38ed5967302ec60ff4417826c24feef6?s=80&d=mm&r=g"
-                alt="Profile Image">
+            <img src="../generate_image.php?name=<?php echo $name; ?>">
         </div>
         <div class="profile-details">
 
-            <form method="post">
+            <form method="post" id="edit-form">
 
                 <div class="row">
                     <div>
@@ -200,11 +322,11 @@
                 <div class="row">
                     <div>
                         <p><label>Time-Slot:</label></br>
-                            <select  name="time-slot">
+                            <select name="time-slot">
                                 <option disabled selected>Select Time Slot</option>
 
                                 <?php
-                               
+
                                 $timeSlots = array(
                                     "7:00am to 7:30am",
                                     "7:30am to 8:00am",
@@ -247,16 +369,16 @@
                             <input type="text" name="vehicle" value="<?php echo $row["vehicle"]; ?>">
                         </p>
                         <p><label>New Licence:</label></br>
-                           
+
                             <select name="newlicence">
-                            <?php 
-                            $boolLicence = array("Applied"=>"Applied","Not Applied"=>"Not Applied");
-                            $select = $row["newlicence"]; 
+                                <?php
+                                $boolLicence = array("Applied" => "Applied", "Not Applied" => "Not Applied");
+                                $select = $row["newlicence"];
                                 foreach ($boolLicence as $Licence) {
                                     $selected = ($Licence == $select) ? "selected" : "";
                                     echo "<option value='$Licence' $selected>$Licence</option>";
                                 }
-                            ?>
+                                ?>
                             </select>
 
                         </p>
@@ -287,18 +409,148 @@
                     </div>
                 </div>
         </div>
-        <div class="profile-buttons" style="
-            display: flex;
-            justify-content: center;
-            flex-direction: column;
-            flex-wrap: wrap;
-            gap: 20px;">
-
-            <input class="edit-btn" type="submit" name="edit" value="Edit" >
+        <div class="profile-buttons">
+            <input class="edit-btn" name="edit" value="Edit" readonly>
+            <input class="delete-btn" name="delete" value="Delete" readonly>
         </div>
         </form>
 
- 
+        <form method="post" id="delete-form" style="display: none;">
+            <input type="hidden" name="DELid" value="<?php echo $row["id"]; ?>">
+
+            <input type="text" name="DELname" value="<?php echo $row["name"]; ?>">
+
+            <input type="text" name="DELemail" value="<?php echo $row["email"]; ?>">
+
+            <input type="text" name="DELphone" value="<?php echo $row["phone"]; ?>">
+        </form>
+
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                // Add an event listener to the edit button
+                document.querySelector(".edit-btn").addEventListener("click", function (e) {
+                    // Show a SweetAlert confirmation dialog
+                    Swal.fire({
+                        title: "Confirm Edit",
+                        text: "Are you sure you want to edit this profile?",
+                        icon: "question",
+                        showCancelButton: true,
+                        confirmButtonColor: "#4CAF50",
+                        cancelButtonColor: "#f44336",
+                        confirmButtonText: "Yes, edit it!",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // If the user confirms, submit the form
+                            document.getElementById("edit-form").submit();
+                        }
+                    });
+                });
+
+
+
+                document.querySelector(".delete-btn").addEventListener("click", function (e) {
+                    // Show a SweetAlert confirmation dialog
+                    Swal.fire({
+                        title: "Confirm Removal",
+                        text: `Are you sure you want to remove this customer?`,
+                        icon: "warning",
+                        showCancelButton: true,
+                        confirmButtonText: "Yes, remove it",
+                        cancelButtonText: "Cancel",
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            // If the user confirms, submit the form
+                            document.getElementById("delete-form").submit();
+                        }
+                    });
+                });
+
+            });
+        </script>
+      
+            <?php
+            $tables = array("i10" => "car_one", "Liva" => "car_two");
+            $conn = mysqli_connect("localhost", "root", "", "billing");
+
+            if (isset($_POST['DELid'])) {
+                $id = $_POST['DELid'];
+                $name = $_POST['DELname'];
+                $email = $_POST['DELemail'];
+                $phone = $_POST['DELphone'];
+
+                $select = "SELECT * FROM `cust_details` WHERE id = $id AND name ='$name' AND phone = '$phone'";
+                $selectResult = mysqli_query($conn, $select);
+                $row = mysqli_fetch_assoc($selectResult);
+
+                $table = null;
+                $inputString = $row['vehicle'];
+
+                // Check if the string starts with "Two Wheeler"
+                if (strpos($inputString, "Two Wheeler") === 0) {
+                    // Handle Two Wheeler case if needed
+                } else {
+                    // Define a regular expression pattern to match the model name
+                    $pattern = '/\b(i10|Liva)\b/';
+
+                    if (preg_match($pattern, $inputString, $matches)) {
+                        $modelName = $matches[0];
+                        $tableKey = $modelName;
+                        $table = $tables[$tableKey];
+                    }
+                }
+
+
+                $sql = "DELETE FROM `cust_details` WHERE id = $id AND phone = '$phone' AND name = '$name'";
+                $resultf = mysqli_query($conn, $sql);
+
+                if (!isset($resultf)) {
+                    echo '<script>Swal.fire("Error", "Failed to remove customer.", "error");</script>';
+                } else {
+                   
+                    try {
+                        if ($table != null) {
+                            $check = "SELECT * FROM `$table` WHERE phone = '$phone' and name = '$name'";
+                            $CheckStatus = mysqli_query($conn, $check);
+                            $statusRow = mysqli_fetch_assoc($CheckStatus);
+                            if ($CheckStatus) {
+                                $status = $statusRow['status'];
+                                $statusP = $statusRow['phone'];
+                                $statusID = $statusRow['id'];
+                                $statusN = $statusRow['name'];
+
+                                $update2 = "UPDATE `$table` SET name='', phone='', vehicle='', trainer='', start_date='', end_date='', status='empty' WHERE id = $statusID AND phone = '$statusP' AND name = '$statusN'";
+                                mysqli_query($conn, $update2);
+                            }
+
+                        }
+                    } catch (Exception $e) {
+                        // Handle the exception here
+                        echo '<script> Swal.fire("Error", "An error occurred while processing the request.", "error"); </script>';
+                    }
+
+                    echo "<script>
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Removed!',
+                        text: 'Customer " . $name . " has been removed',
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                    setTimeout(function () {
+                        window.location.href = '../';
+                    }, 2000);
+                    </script>";
+
+                    logActivity('admin_logs', $_SESSION['admin_name'], "Customer ".$name." has been removed form database | Details:- Name: ".$name." Phone: ".$phone);
+                    exit();
+
+                }
+            }
+            ?>
+
+        
 </body>
 
 </html>

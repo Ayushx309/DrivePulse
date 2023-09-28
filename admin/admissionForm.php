@@ -3,8 +3,36 @@
 
 include('../includes/authentication.php');
 
+function logActivity($logType, $who, $activity)
+{
+    date_default_timezone_set('Asia/Kolkata');
 
-$vehicleJSON = array("Four Wheeler"=>array("vehicleType"=>"","vehicleModel"=>"","totalKM"=>""),"Two Wheeler"=>array("vehicleType"=>"","totalTime"=>""));
+    $logFolder = '../logs/' . $logType;
+
+    if (!file_exists($logFolder)) {
+        mkdir($logFolder, 0755, true);
+    }
+
+    $logFile = $logFolder . '/admission_logs.json';
+
+    // Read existing log entries from the file, or create an empty array if the file doesn't exist
+    $existingLogs = file_exists($logFile) ? json_decode(file_get_contents($logFile), true) : [];
+
+    $logEntry = [
+        'timestamp' => date('Y-m-d H:i:s'),
+        'who' => $who,
+        'activity' => $activity,
+    ];
+
+    // Append the new log entry to the existing logs array
+    // $existingLogs[] = $logEntry;
+    array_unshift($existingLogs, $logEntry);
+
+
+    // Save the updated logs array back to the file
+    file_put_contents($logFile, json_encode($existingLogs, JSON_PRETTY_PRINT));
+}
+
 
 
 
@@ -101,7 +129,7 @@ if (isset($_POST['book-admission'])) {
         $CarDetails = "Four Wheeler  ";
         $CarDetails .= $carName;
 
-        $TandD = $distance . "Km, ";
+        $TandD = $distance . "Km ";
 
         $vehicleDetails = $CarDetails . "/ " . $TandD;
 
@@ -109,7 +137,7 @@ if (isset($_POST['book-admission'])) {
     } elseif ($vehicle == '2wheeler') {
 
         $bikeName = "Two Wheeler";
-        $bikeTime = $_POST['bikeTime'] . " mins";
+        $bikeTime = $_POST['bikeTime'] . " mins ";
 
         $vehicleDetails = $bikeName . "/ " . $bikeTime;
 
@@ -178,17 +206,19 @@ if (isset($_POST['book-admission'])) {
 
             if (isset($result)) {
 
+                logActivity('admin_logs', $_SESSION['admin_name'], array("What" => "Booked Admission", array("customer_details" => array("name" => $name, "phone" => $phone, "car" => $vehicleDetails, "timeSlot" => $timeSlot, "addmission_date" => $currentDate, "days"=> $days, "started_at" => $startedAT, "ended_at" => $Ends_On, "formfiller" => $_SESSION['admin_name']))));
+
 
                 if ($vehicle == '4wheeler') {
 
 
 
-                    header('location:../previewPDF.php?id=' . $phone . '&email=' . $email . '&name=' . $name . '&VN=' . $CarDetails . '&TT=' . $TandD);
+                    header('location:../previewPDF.php?id=' . $phone . '&email=' . $email . '&name=' . $name . '&VN=' . $CarDetails . '&TT=' . $TandD.'&who=admin');
 
                 } elseif ($vehicle == '2wheeler') {
 
 
-                    header('location:../previewPDF.php?id=' . $phone . '&email=' . $email . '&name=' . $name . '&VN=' . $bikeName . '&TT=' . $bikeTime);
+                    header('location:../previewPDF.php?id=' . $phone . '&email=' . $email . '&name=' . $name . '&VN=' . $bikeName . '&TT=' . $bikeTime.'&who=admin');
                 }
 
             } else {
@@ -221,7 +251,7 @@ if (isset($_POST['book-admission'])) {
 
     <!----===== Iconscout CSS ===== -->
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="shortcut icon" type="image/png" href="../assets/logo.png"/>
+    <link rel="shortcut icon" type="image/png" href="../assets/logo.png" />
     <link rel="stylesheet" href="../css/navbar.css">
 
 
@@ -234,7 +264,7 @@ if (isset($_POST['book-admission'])) {
     <section id="content" style="width: 100%; position: sticky; margin-bottom: 10px; ">
         <nav>
             <div class="btn-s">
-                <a href="index.php" class="home-link" style="margin-right: 20px;">
+                <a href="./" class="home-link" style="margin-right: 20px;">
                     Back
                 </a>
                 <a href="timetable" class="home-link">
@@ -245,7 +275,7 @@ if (isset($_POST['book-admission'])) {
                 <h3>Patel Motor Driving School</h3>
 
             </span>
-            <a href="#" class="profile" style="margin-left: 140px;">
+            <a href="./" class="profile" style="margin-left: 140px;">
                 <img src="../assets/logoBlack.png">
             </a>
         </nav>
@@ -491,15 +521,15 @@ if (isset($_POST['book-admission'])) {
                     <!-- <span class="btnText"> -->
                     <input class="nextBtn" type="submit" name="book-admission" class="enter" value="Book Admission"
                         style="    height: 45px;
-    max-width: 200px;
-    width: 100%;
-    border: none;
-    outline: none;
-    color: #fff;
-    border-radius: 5px;
-    margin: 25px 0;
-    background-color: #4070f4;
-    cursor: pointer;
+                        max-width: 200px;
+                        width: 100%;
+                        border: none;
+                        outline: none;
+                        color: #fff;
+                        border-radius: 5px;
+                        margin: 25px 0;
+                        background-color: #4070f4;
+                        cursor: pointer;
                         ">
                     <!-- <i class="uil uil-navigator"></i> -->
                     <!-- </button> -->

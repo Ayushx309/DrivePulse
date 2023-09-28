@@ -65,7 +65,7 @@ function mailReceipt($id, $email, $name)
 
                 $VN = trim($parts[0]);
                 $TT = trim($parts[1]);
-                $TT .= ",  ";
+   
 
 
 
@@ -757,7 +757,7 @@ if($_GET['id'] and $_GET['email'] and $_GET['name']){
             <?php echo $VN; ?>
         </strong>
         <strong class="form-style form-Vdetails">
-            <?php echo $TT . $timeslot; ?>
+            <?php echo $TT.",  ". $timeslot; ?>
         </strong>
 
 
@@ -779,7 +779,7 @@ if($_GET['id'] and $_GET['email'] and $_GET['name']){
 
 
         function redirect() {
-            window.location = "http://localhost/Billing_Software/mailGeneratedPDF.php?id=<?php echo $id; ?>&email=<?php echo $email ?>&name=<?php echo $name ?>&VN=<?php echo $VN; ?>&TT=<?php echo $TT; ?>";
+            window.location = "./mailGeneratedPDF.php?id=<?php echo $id; ?>&email=<?php echo $email ?>&name=<?php echo $name ?>&VN=<?php echo $VN; ?>&TT=<?php echo $TT; ?>";
 
         }
         var delay = 500;

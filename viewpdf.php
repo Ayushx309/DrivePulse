@@ -1,12 +1,9 @@
-
-
-
 <?php
 
 
 @include 'config.php';
 
-
+include('includes/authenticationAdminOrStaff.php');
 
 $id = $_GET['id'];
 $email = $_GET['email'];
@@ -15,10 +12,21 @@ $name = $_GET['name'];
 
 
 
-
 $select = "SELECT * FROM `cust_details` WHERE phone = '$id' AND email = '$email' AND name = '$name'";
 
 $result = mysqli_query($conn, $select);
+// $row = mysqli_fetch_assoc($result);
+// echo $row['name'];
+// echo $row['phone'];
+// echo $row['email'];
+// echo $row['address'];
+
+// if (mysqli_num_rows($result)) {
+//   echo "yes";
+// }else{
+//   echo "no";
+// }
+
 
 if ($result) {
 
@@ -62,9 +70,8 @@ if ($result) {
 
 
   } else {
-    echo "No rows found.";
+    // echo "No rows found.";
   }
-
 
   mysqli_free_result($result);
 
@@ -79,10 +86,14 @@ if ($result) {
 <html>
 
 <head>
+
+  <link rel="shortcut icon" type="image/png" href="assets/logo.png" />
+
   <style>
     @page {
       size: A4 portrait;
       margin: 0;
+      overflow: hidden;
     }
 
     html,
@@ -204,14 +215,14 @@ if ($result) {
     .container .form-signature {
 
       position: absolute;
-      top: 870px;
-      left: -20px;
+      top: 960px;
+      left: 60px;
 
     }
 
     .container .form-signature img {
-      width: 290px;
-      height: 140px;
+      width: 210px;
+      height: 100px;
     }
 
     .container .form-Tname {
@@ -256,8 +267,8 @@ if ($result) {
       height: 500px;
       background-color: transparent;
       position: absolute;
-      top: 400px;
-      left: 1150px;
+      top: 349px;
+      left: 999px;
       flex-direction: column;
       align-items: center;
       gap: 25px;
@@ -601,11 +612,8 @@ if ($result) {
 
     .vertical-text {
       writing-mode: vertical-rl;
-      /* Rotate text vertically from right to left */
       text-orientation: upright;
-      /* Keep the text upright */
       white-space: nowrap;
-      /* Prevent line breaks */
     }
 
     .vert {
@@ -683,7 +691,7 @@ if ($result) {
     <strong class="form-style form-dueA">
       <?php echo $dueA; ?>
     </strong>
-    <!-- <strong class="form-style form-signature"><img src="assets/signature.png"></strong> -->
+    <strong class="form-style form-signature"><img src="assets/signature.png"></strong>
     <strong class="form-style form-Tname">
       <?php echo $Tname; ?>
     </strong>
@@ -715,12 +723,13 @@ if ($result) {
     // setTimeout(redirectAndClose, delay);
 
 
-    function redirect() {
-      window.location = "./viewGeneratedPDF.php?id=<?php echo $id; ?>&email=<?php echo $email ?>&name=<?php echo $name ?>&VN=<?php echo $VN; ?>&TT=<?php echo $TT; ?>";
+    // function redirect() {
+    //   window.location = "./viewGeneratedPDF.php?id=<?php echo $id; ?>&email=<?php echo $email; ?>&name=<?php echo $name; ?>&VN=<?php echo $VN; ?>&TT=<?php echo $TT; ?>&route=<?php echo urlencode((isset($_GET['route'])) ? $_GET['route'] : "admin/"); ?>&who=<?php echo (isset($_GET['who'])) ? $_GET['who'] : "0"; ?>";
 
-    }
-    var delay = 500;
-    setTimeout(redirect, delay);
+    // }
+    // var delay = 500;
+
+    // setTimeout(redirect, delay);
 
   </script>
 

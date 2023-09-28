@@ -1,8 +1,5 @@
-
-
-
 <?php
-
+include('includes/authenticationAdminOrStaff.php');
 
 @include 'config.php';
 
@@ -54,7 +51,7 @@ if ($result) {
 
       $VN = trim($parts[0]);
       $TT = trim($parts[1]);
-      $TT .= ",  ";
+
 
 
 
@@ -79,7 +76,7 @@ if ($result) {
 <html>
 
 <head>
-<link rel="shortcut icon" type="image/png" href="assets/logo.png"/>
+  <link rel="shortcut icon" type="image/png" href="assets/logo.png" />
 
   <style>
     @page {
@@ -95,6 +92,7 @@ if ($result) {
       padding: 0;
       position: relative;
       background-color: #252525;
+
     }
 
     .container {
@@ -102,6 +100,7 @@ if ($result) {
       z-index: 1;
       width: 100%;
       height: 100%;
+
     }
 
     .form-style {
@@ -206,15 +205,16 @@ if ($result) {
     .container .form-signature {
 
       position: absolute;
-      top: 870px;
-      left: -20px;
+      top: 960px;
+      left: 60px;
 
     }
 
     .container .form-signature img {
-      width: 290px;
-      height: 140px;
+      width: 210px;
+      height: 100px;
     }
+
 
     .container .form-Tname {
       position: absolute;
@@ -258,8 +258,8 @@ if ($result) {
       height: 500px;
       background-color: transparent;
       position: absolute;
-      top: 400px;
-      left: 1150px;
+      top: 349px;
+      left: 999px;
       flex-direction: column;
       align-items: center;
       gap: 25px;
@@ -603,11 +603,8 @@ if ($result) {
 
     .vertical-text {
       writing-mode: vertical-rl;
-      /* Rotate text vertically from right to left */
       text-orientation: upright;
-      /* Keep the text upright */
       white-space: nowrap;
-      /* Prevent line breaks */
     }
 
     .vert {
@@ -685,7 +682,7 @@ if ($result) {
     <strong class="form-style form-dueA">
       <?php echo $dueA; ?>
     </strong>
-    <!-- <strong class="form-style form-signature"><img src="assets/signature.png"></strong> -->
+    <strong class="form-style form-signature"><img src="assets/signature.png"></strong>
     <strong class="form-style form-Tname">
       <?php echo $Tname; ?>
     </strong>
@@ -696,7 +693,7 @@ if ($result) {
       <?php echo $VN; ?>
     </strong>
     <strong class="form-style form-Vdetails">
-      <?php echo $TT . $timeslot; ?>
+      <?php echo $TT . ",  " . $timeslot; ?>
     </strong>
 
 
@@ -718,7 +715,7 @@ if ($result) {
 
 
     function redirect() {
-      window.location = "./pdf_gen.php?id=<?php echo $id; ?>&email=<?php echo $email ?>&name=<?php echo $name ?>&VN=<?php echo $VN; ?>&TT=<?php echo $TT; ?>";
+      window.location = "./pdf_gen.php?id=<?php echo $id; ?>&email=<?php echo $email ?>&name=<?php echo $name ?>&VN=<?php echo $VN; ?>&TT=<?php echo $TT; ?>&who=<?php echo $_GET['who'] ?>";
       // let url = "http://localhost/Billing_Software/pdf_gen.php?id=<?php // echo $id; ?>&email=<?php // echo $email ?>&name=<?php // echo $name ?>&VN=<?php // echo $VN; ?>&TT=<?php // echo $TT; ?>";
       // let newWindow = window.open(url, '_blank', features);
 

@@ -12,7 +12,7 @@ if (isset($_POST['input'])) {
 
         ?>
 
-        <div class="todo">
+        <div class="search-table">
             <table>
 
                 <thead>

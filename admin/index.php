@@ -1,7 +1,7 @@
 <?php
 
 include('../includes/authentication.php');
-
+date_default_timezone_set('Asia/Kolkata');
 if (isset($_GET['search-query'])) {
 
     $Squery = $_GET['search-query'];
@@ -70,10 +70,11 @@ if (isset($_GET['search-query'])) {
             font-weight: 200;
             background: var(--blue);
             text-decoration: none;
+            transition: all 250ms;
         }
 
         .view:hover {
-            background: darkgreen;
+            background: #206e88;
         }
 
         .order td[colspan="6"] {
@@ -120,9 +121,12 @@ if (isset($_GET['search-query'])) {
             font-size: 20px;
             padding: 10px;
         }
+
+        
     </style>
+
     <link rel="shortcut icon" type="image/png" href="../assets/logo.png" />
-    <title>Admin Dashboard</title>
+    <title>Dashboard</title>
 </head>
 
 <body>
@@ -134,7 +138,7 @@ if (isset($_GET['search-query'])) {
             <!-- <i class='bx bxs-smile'></i> -->
 
             <span class="text">
-                <h6>Hi, <span>Admin</span></h6>
+                <h6><span>Admin</span></h6>
                 <h4>Welcome <span>
                         <?php echo $_SESSION['admin_name'] ?>
                     </span></h4>
@@ -142,7 +146,7 @@ if (isset($_GET['search-query'])) {
         </a>
         <ul class="side-menu top">
             <li class="active">
-                <a href="#">
+                <a href="./">
                     <i class='bx bxs-dashboard'></i>
                     <span class="text">Dashboard</span>
                 </a>
@@ -153,6 +157,12 @@ if (isset($_GET['search-query'])) {
                     <span class="text">Book Admission</span>
                 </a>
             </li>
+            <li>
+                <a href="analytics">
+                    <i class='bx bxs-bar-chart-alt-2'></i>
+                    <span class="text">Analytics</span>
+                </a>
+            </li>
             <li class="search">
                 <a href="search.php">
                     <i class='bx bx-search-alt-2'></i>
@@ -161,8 +171,9 @@ if (isset($_GET['search-query'])) {
             </li>
             <li>
                 <a href="sortData/">
-                    <i class='bx bxs-bar-chart-alt-2'></i>
-                    <span class="text">Analytics</span>
+                    <!-- <i class='bx bxs-bar-chart-alt-2'></i> -->
+                    <i class='bx bxs-data'></i>
+                    <span class="text">Customers Data</span>
                 </a>
             </li>
             <li class="time-table">
@@ -171,8 +182,22 @@ if (isset($_GET['search-query'])) {
                     <span class="text">Time Table</span>
                 </a>
             </li>
+
             <li>
-                <a href="#">
+                <a href="./dueCustomers/">
+                    <i class='bx bxs-user'></i>
+                    <span class="text">Due Amount Customers</span>
+                </a>
+            </li>
+            <li>
+                <a href="mailSender/">
+                    <i class='bx bx-mail-send'></i>
+                    <span class="text">Mail System</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="manageUsers/">
                     <i class='bx bxs-group'></i>
                     <span class="text">Manage Users</span>
                 </a>
@@ -211,16 +236,16 @@ if (isset($_GET['search-query'])) {
                 </div>
             </form> -->
             <!-- <input type="checkbox" id="switch-mode" hidden>
-            <label for="switch-mode" class="switch-mode"></label>
-            <a href="#" class="notification">
+            <label for="switch-mode" class="switch-mode"></label> -->
+            <!-- <a href="#" class="notification">
                 <i class='bx bxs-bell'></i>
                 <span class="num">8</span>
             </a> -->
             <span class="text">
                 <h3>Patel Motor Driving School</h3>
-                <h5>Admin Dashboard</h5>
+                <h5>Dashboard</h5>
             </span>
-            <a href="index.php" class="profile">
+            <a href="./" class="profile">
                 <img src="../assets/logoBlack.png">
             </a>
         </nav>
@@ -233,43 +258,158 @@ if (isset($_GET['search-query'])) {
                     <h1>Dashboard</h1>
                     <ul class="breadcrumb">
                         <li>
-                            <a href="#">Dashboard</a>
+                            <a class="active" style=" color: #aaaaaa;" href="./">Dashboard</a>
                         </li>
                         <li><i class='bx bx-chevron-right'></i></li>
                         <li>
-                            <a class="active" href="#">Home</a>
+                            <a class="active" href="./">Home</a>
                         </li>
                     </ul>
                 </div>
-                <a href="Excel/?export=true" class="btn-download">
-                    <i class='bx bxs-cloud-download'></i>
-                    <span class="text">Data to Excel</span>
-                </a>
+                <div style="    display: flex;
+                    width: 300px;
+                    flex-direction: row;
+                    align-content: center;
+                    justify-content: center;
+                    gap: 20px;
+                    align-items: center;
+                    flex-wrap: wrap;">
+                    <a href="Excel/?export=true" class="btn-download">
+                        <i class='bx bxs-cloud-download'></i>
+                        <span class="text">Data to Excel</span>
+                    </a>
+                    <a href="viewLogs/" class="btn-download" style="background: grey;">
+                    <i class="fa-solid fa-file-circle-question"></i>
+                        <span class="text">Logs</span>
+                    </a>
+                </div>
             </div>
 
-            <!-- <ul class="box-info">
+            <div class="box-info-head" style="
+            padding: 24px;
+            background: #f9f9f9;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            margin-top: 36px;">
+
+                <i class='bx bxs-calendar' style="
+            width: 30px;
+            height: 30px;
+            border-radius: 10px;
+            font-size: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: red;
+            
+            "></i>
+                <span class="text">
+                    <h3>
+                        <?php
+                        $currentMonthYear = date("F Y");
+
+                        echo $currentMonthYear . " ";
+                        ?>
+                        Statistics
+                    </h3>
+                    <p></p>
+                </span>
+            </div>
+            <ul class="box-info">
                 <li>
-                    <i class='bx bxs-calendar-check'></i>
+                    <i class='bx bxs-car'></i>
                     <span class="text">
-                        <h3>1020</h3>
-                        <p>New Order</p>
+                        <h3>
+                            <?php
+
+                            $sql = "SELECT SUM(active_count) AS total_active_users
+        FROM (
+            SELECT COUNT(*) AS active_count
+            FROM car_one
+            WHERE status = 'active'
+            UNION ALL
+            SELECT COUNT(*) AS active_count
+            FROM car_two
+            WHERE status = 'active'
+        ) AS combined_tables";
+
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                // Output data
+                                $row = $result->fetch_assoc();
+                                $totalActiveUsers = $row["total_active_users"];
+                                echo "" . $totalActiveUsers;
+                            } else {
+                                echo "No active users found.";
+                            }
+
+                            ?>
+                        </h3>
+                        <p>Active Learners</p>
                     </span>
                 </li>
                 <li>
                     <i class='bx bxs-group'></i>
                     <span class="text">
-                        <h3>2834</h3>
-                        <p>Visitors</p>
+                        <h3>
+                            <?php
+
+                            // Get the current year and month
+                            $currentYear = date("Y");
+                            $currentMonth = date("m");
+
+                            // SQL query to retrieve total paidamount for the current month
+                            $sql = "SELECT COUNT(*) AS total_new_customers FROM `cust_details` WHERE YEAR(`date`) = $currentYear AND MONTH(`date`) = $currentMonth";
+
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                $totalNewCustomers = $row["total_new_customers"];
+                                echo $totalNewCustomers;
+                            } else {
+                                echo "No new customers recorded for this month.";
+                            }
+
+
+                            ?>
+                        </h3>
+                        <p>Total Admissions</p>
                     </span>
                 </li>
                 <li>
-                    <i class='bx bxs-dollar-circle'></i>
+                    <i class='bx bx-rupee'></i>
                     <span class="text">
-                        <h3>$2543</h3>
+                        <h3>
+                            <?php
+
+
+                            // Get the current year and month
+                            $currentYear = date("Y");
+                            $currentMonth = date("m");
+
+                            // SQL query to retrieve total paidamount for the current month
+                            $sql = "SELECT SUM(paidamount) AS total_paidamount FROM `cust_details` WHERE YEAR(`date`) = $currentYear AND MONTH(`date`) = $currentMonth";
+
+                            $result = $conn->query($sql);
+
+                            if ($result->num_rows > 0) {
+                                $row = $result->fetch_assoc();
+                                $totalPaidAmount = $row["total_paidamount"];
+                                echo "₹" . number_format($totalPaidAmount, 2);
+                            } else {
+                                echo "No payments recorded for this month.";
+                            }
+
+                            ?>
+                        </h3>
                         <p>Total Sales</p>
                     </span>
                 </li>
-            </ul> -->
+            </ul>
 
 
             <div class="table-data">
@@ -324,52 +464,6 @@ if (isset($_GET['search-query'])) {
 
                 </div>
 
-                <div class="order">
-                    <div class="head">
-                        <h3>Users Information</h3>
-                        <!-- <i class='bx bx-plus'></i>
-                        <i class='bx bx-filter'></i> -->
-                    </div>
-                    <!-- <div class="display-table"> -->
-                    <table>
-
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Username</th>
-                                <th>Password</th>
-                                <th>Permissions</th>
-                                <th>Created at</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            $sql = "SELECT id, name, username, password, permissions, time FROM users_db";
-                            $result = $conn->query($sql);
-                            if ($result->num_rows > 0) {
-                                // output data of each row
-                                while ($row = $result->fetch_assoc()) {
-                                    echo "<tr><td>" . $row["name"] . "</td><td>"
-                                        . $row["username"] . "</td><td>" . $row["password"] . "</td><td>" . $row["permissions"] . "</td><td>"
-                                        . $row["time"] . "</td>" . "<td>" .
-                                        "<a class='edit' href='edituser.php?i=" . $row["id"] . "&n=" . $row["name"] . "&u=" . $row["username"] . "&p=" . $row["permissions"] . "'>Edit</a>
-
-                                       
-                                        " .
-
-                                        "</td></tr>";
-                                        // <a class='delete_btn_ajax delete' >Delete</a> add this later #############
-                                }
-                                echo "</tbody>";
-                                echo "</table>";
-                            } else {
-                                echo "0 results";
-                            }
-                            $conn->close();
-                            ?>
-                </div>
-            </div>
 
 
         </main>

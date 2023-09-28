@@ -1,5 +1,35 @@
 <?php
 
+function logActivity($logType, $who, $activity)
+{
+   date_default_timezone_set('Asia/Kolkata');
+
+   $logFolder = 'logs/' . $logType;
+
+   if (!file_exists($logFolder)) {
+      mkdir($logFolder, 0755, true);
+   }
+
+   $logFile = $logFolder . '/logs.json';
+
+   // Read existing log entries from the file, or create an empty array if the file doesn't exist
+   $existingLogs = file_exists($logFile) ? json_decode(file_get_contents($logFile), true) : [];
+
+   $logEntry = [
+      'timestamp' => date('Y-m-d H:i:s'),
+      'who' => $who,
+      'activity' => $activity,
+   ];
+
+   // Append the new log entry to the existing logs array
+   // $existingLogs[] = $logEntry;
+   array_unshift($existingLogs, $logEntry);
+
+   // Save the updated logs array back to the file
+   file_put_contents($logFile, json_encode($existingLogs, JSON_PRETTY_PRINT));
+}
+
+
 @include 'config.php';
 
 session_start();
@@ -37,17 +67,19 @@ if (isset($_POST['submit'])) {
       if ($row['permissions'] == 'admin') {
 
          $_SESSION['admin_name'] = $row['name'];
+         logActivity('admin_logs', $_SESSION['admin_name'], 'Logged in');
          header('location:admin/');
+
+      } elseif ($row['permissions'] == 'staff') {
+
+         $_SESSION['staff_name'] = $row['name'];
+         logActivity('staff_logs', $_SESSION['staff_name'], 'Logged in');
+         header('location:staff/');
 
       } elseif ($row['permissions'] == 'user') {
 
          $_SESSION['user_name'] = $row['name'];
          header('location:user/');
-
-      } elseif ($row['permissions'] == 'noAccess') {
-
-         $_SESSION['member_name'] = $row['name'];
-         header('location:newMember/');
 
       }
 
@@ -69,7 +101,7 @@ if (isset($_POST['submit'])) {
    <title>login form</title>
 
    <!-- custom css file link  -->
-   <link rel="shortcut icon" type="image/png" href="assets/logo.png"/>
+   <link rel="shortcut icon" type="image/png" href="assets/logo.png" />
    <link rel="stylesheet" href="css/style.css">
 
 </head>

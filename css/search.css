@@ -1,11 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
 
 * {
   font-family: 'Poppins', sans-serif;
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
-}
+} */
 
 .container {
   min-height: 25vh;
@@ -45,30 +45,30 @@
 }
 
 /* Style for the table container */
-.todo {
+.search-table {
   width: 100%;
 }
 
-.todo {
+.search-table {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 /* Style for the table header */
-.todo table thead th {
+.search-table table thead th {
   background-color: #f2f2f2;
   text-align: left;
   padding: 10px;
 }
 
 /* Style for the table body */
-.todo table tbody td {
+.search-table table tbody td {
   padding: 10px;
 }
 
 /* Style for the edit and delete buttons */
-.todo table tbody td a.view,
+.search-table table tbody td a.view,
 .full-data a {
   font-size: 14px;
   padding: 6px 16px;
@@ -88,7 +88,7 @@
 }
 
 /* Pagination */
-.pagination {
+/* .pagination {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -124,7 +124,7 @@
 
 .pagination-container {
   text-align: center;
-}
+} */
 
 /* Responsive Styles */
 
@@ -141,12 +141,12 @@
     max-width: 300px;
   }
 
-  .todo table {
+  .search-table table {
     font-size: 12px;
   }
 
-  .todo table th,
-  .todo table td {
+  .search-table table th,
+  .search-table table td {
     padding: 8px;
   }
 }

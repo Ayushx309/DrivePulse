@@ -34,7 +34,7 @@ if (isset($_POST['edit'])) {
             die("Error updating row: " . mysqli_error($conn));
         }
         else{
-            header('location:../sortData');
+            header('location:'.$_GET['route']);
         }
     }
 ?>
