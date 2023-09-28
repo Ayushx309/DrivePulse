@@ -718,7 +718,7 @@ if ($result) {
 
 
     function redirect() {
-      window.location = "http://localhost/Billing_Software/pdf_gen.php?id=<?php echo $id; ?>&email=<?php echo $email ?>&name=<?php echo $name ?>&VN=<?php echo $VN; ?>&TT=<?php echo $TT; ?>";
+      window.location = "./pdf_gen.php?id=<?php echo $id; ?>&email=<?php echo $email ?>&name=<?php echo $name ?>&VN=<?php echo $VN; ?>&TT=<?php echo $TT; ?>";
       // let url = "http://localhost/Billing_Software/pdf_gen.php?id=<?php // echo $id; ?>&email=<?php // echo $email ?>&name=<?php // echo $name ?>&VN=<?php // echo $VN; ?>&TT=<?php // echo $TT; ?>";
       // let newWindow = window.open(url, '_blank', features);
 

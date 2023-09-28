@@ -716,7 +716,7 @@ if ($result) {
 
 
     function redirect() {
-      window.location = "http://localhost/Billing_Software/viewGeneratedPDF.php?id=<?php echo $id; ?>&email=<?php echo $email ?>&name=<?php echo $name ?>&VN=<?php echo $VN; ?>&TT=<?php echo $TT; ?>";
+      window.location = "./viewGeneratedPDF.php?id=<?php echo $id; ?>&email=<?php echo $email ?>&name=<?php echo $name ?>&VN=<?php echo $VN; ?>&TT=<?php echo $TT; ?>";
 
     }
     var delay = 500;
