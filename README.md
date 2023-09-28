@@ -64,6 +64,9 @@ Please note that this is not the final version of DrivePulse, and we will be act
 
 For more detailed installation instructions, please refer to the [Installation Guide](installation.md).
 
+
+#### * Please Note That This Version Of DrivePulse Is Currently Not Fully Responsive For Mobile Devices And Tablets.
+
 ## Contributors
 
 - [Ayush Joshi](https://github.com/Ayushx309)
