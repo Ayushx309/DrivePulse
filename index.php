@@ -1,3 +1,53 @@
+<?php
+$servername = "localhost";
+$username = "root";
+$password = "";
+$database = "billing";
+$conn = new mysqli($servername, $username, $password);
+
+$sqlDumpFile = "./sql/execute.db";
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Check if the database exists
+if ($conn->query("USE $database") === FALSE) {
+    // Database doesn't exist, create it
+    $sqlCreateDatabase = "CREATE DATABASE IF NOT EXISTS $database";
+    if ($conn->query($sqlCreateDatabase) === TRUE) {
+        $msg[] = "Database created successfully\n";
+        $conn->query("USE $database"); // Select the created database
+    } else {
+        $msg[] = "Error creating database: " . $conn->error;
+        $conn->close();
+        exit;
+    }
+}
+
+// Check if there are no tables in the database
+$result = $conn->query("SHOW TABLES");
+
+if ($result === FALSE) {
+    // Error occurred while executing SHOW TABLES query
+    $msg[] = "Error checking tables: " . $conn->error;
+} elseif ($result->num_rows === 0) {
+    // No tables in the database, execute the SQL dump
+    $sqlScript = file_get_contents($sqlDumpFile);
+
+    if ($conn->multi_query($sqlScript)) {
+        $msg[] = "SQL dump executed successfully\n";
+    } else {
+        $msg[] = "Error executing SQL dump: " . $conn->error;
+    }
+} else {
+    $msg[] = "Database already contains tables, SQL dump not executed\n";
+    $msg[] = "Enjoy DrivePulse 😄";
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,6 +55,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
+
     <style>
         button {
             position: relative;
@@ -118,6 +169,7 @@
             text-align: center;
             padding: 14px 16px;
             text-decoration: none;
+            transition: all .4s;
         }
 
         .navbar ul li .x1:hover {
@@ -127,12 +179,34 @@
         .navbar .active {
             background-color: #4CAF50;
         }
-        a{
+
+        a {
             text-decoration: none;
         }
 
+        .container {
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 60vh;
+            flex-direction: column;
+            flex-wrap: wrap;
+            align-content: center;
+        }
+
+        .error-msg {
+            margin: 10px 0;
+            display: block;
+            background: #46abcc;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 20px;
+            padding: 10px;
+        }
     </style>
-   <link rel="shortcut icon" type="image/png" href="assets/logo.png"/>
+    <link rel="shortcut icon" type="image/png" href="assets/logo.png" />
 
 </head>
 
@@ -150,12 +224,22 @@
                     <span class="circle" aria-hidden="true">
                         <span class="icon arrow"></span>
                     </span>
-                   <a  href="login_form.php" class="button-text">Dashboard</a>
+                    <a href="login_form.php" class="button-text">Dashboard</a>
                 </button>
             </li>
         </ul>
     </div>
-
+    <div class="container">
+        <?php
+        if (isset($msg)) {
+            foreach ($msg as $msg) {
+                echo '<span class="error-msg">' . $msg . '</span>';
+            }
+            ;
+        }
+        ;
+        ?>
+    </div>
 </body>
 
 </html>
