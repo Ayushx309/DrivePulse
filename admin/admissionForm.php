@@ -206,19 +206,19 @@ if (isset($_POST['book-admission'])) {
 
             if (isset($result)) {
 
-                logActivity('admin_logs', $_SESSION['admin_name'], array("What" => "Booked Admission", array("customer_details" => array("name" => $name, "phone" => $phone, "car" => $vehicleDetails, "timeSlot" => $timeSlot, "addmission_date" => $currentDate, "days"=> $days, "started_at" => $startedAT, "ended_at" => $Ends_On, "formfiller" => $_SESSION['admin_name']))));
+                logActivity('admin_logs', $_SESSION['admin_name'], array("What" => "Booked Admission", array("customer_details" => array("name" => $name, "phone" => $phone, "car" => $vehicleDetails, "timeSlot" => $timeSlot, "addmission_date" => $currentDate, "days" => $days, "started_at" => $startedAT, "ended_at" => $Ends_On, "formfiller" => $_SESSION['admin_name']))));
 
 
                 if ($vehicle == '4wheeler') {
 
 
 
-                    header('location:../previewPDF.php?id=' . $phone . '&email=' . $email . '&name=' . $name . '&VN=' . $CarDetails . '&TT=' . $TandD.'&who=admin');
+                    header('location:../previewPDF.php?id=' . $phone . '&email=' . $email . '&name=' . $name . '&VN=' . $CarDetails . '&TT=' . $TandD . '&who=admin');
 
                 } elseif ($vehicle == '2wheeler') {
 
 
-                    header('location:../previewPDF.php?id=' . $phone . '&email=' . $email . '&name=' . $name . '&VN=' . $bikeName . '&TT=' . $bikeTime.'&who=admin');
+                    header('location:../previewPDF.php?id=' . $phone . '&email=' . $email . '&name=' . $name . '&VN=' . $bikeName . '&TT=' . $bikeTime . '&who=admin');
                 }
 
             } else {
@@ -253,7 +253,7 @@ if (isset($_POST['book-admission'])) {
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="shortcut icon" type="image/png" href="../assets/logo.png" />
     <link rel="stylesheet" href="../css/navbar.css">
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <title>Admission Form</title>
 </head>
@@ -354,66 +354,8 @@ if (isset($_POST['book-admission'])) {
                             <input type="text" name="days" placeholder="Enter Days" required>
                         </div>
 
-                        <div class="input-field">
-                            <label>Time Slot</label>
-                            <select required name="time-slot">
-                                <option disabled selected>Select Time Slot</option>
-
-                                <option value="7:00am to 7:30am">7:00am to 7:30am</option>
-
-                                <option value="7:30am to 8:00am">7:30am to 8:00am</option>
-
-                                <option value="8:00am to 8:30am">8:00am to 8:30am</option>
-
-                                <option value="8:30am to 9:00am">8:30am to 9:00am</option>
-
-                                <option value="9:00am to 9:30am">9:00am to 9:30am</option>
-
-                                <option value="9:30am to 10:00am">9:30am to 10:00am</option>
-
-                                <option value="10:00am to 10:30am">10:00am to 10:30am</option>
-
-                                <option value="10:30am to 11:00am">10:30am to 11:00am</option>
-
-                                <option value="11:00am to 11:30am">11:00am to 11:30am</option>
-
-                                <option value="11:30am to 12:00pm">11:30am to 12:00pm</option>
-
-                                <option value="12:00pm to 12:30pm">12:00pm to 12:30pm</option>
-
-                                <option value="12:30pm to 1:00pm">12:30pm to 1:00pm</option>
-
-                                <option value="1:00pm to 1:30pm">1:00pm to 1:30pm</option>
-
-                                <option value="1:30pm to 2:00pm">1:30pm to 2:00pm</option>
-
-                                <option value="2:00pm to 2:30pm">2:00pm to 2:30pm</option>
-
-                                <option value="2:30pm to 3:00pm">2:30pm to 3:00pm</option>
-
-                                <option value="3:00pm to 3:30pm">3:00pm to 3:30pm</option>
-
-                                <option value="3:30pm to 4:00pm">3:30pm to 4:00pm</option>
-
-                                <option value="4:00pm to 4:30pm">4:00pm to 4:30pm</option>
-
-                                <option value="4:30pm to 5:00pm">4:30pm to 5:00pm</option>
-
-                                <option value="5:00pm to 5:30pm">5:00pm to 5:30pm</option>
-
-                                <option value="5:30pm to 6:00pm">5:30pm to 6:00pm</option>
-
-
-                                <option value="6:00pm to 6:30pm">6:00pm to 6:30pm</option>
-
-                                <option value="6:30pm to 7:00pm">6:30pm to 7:00pm</option>
-
-                                <option value="7:00pm to 7:30pm">7:00pm to 7:30pm</option>
-
-                                <option value="7:30pm to 8:00pm">7:30pm to 8:00pm</option>
-
-
-                            </select>
+                        <div class="input-field" id="timeSlotsContainer">
+                         
                         </div>
 
 
@@ -472,7 +414,7 @@ if (isset($_POST['book-admission'])) {
                             <div class="input-field">
                                 <label>Car Name</label>
                                 <!-- <input type="text" name="carName" id="carName"> -->
-                                <select name="carName" required>
+                                <select name="carName" id="carName" required>
                                     <option disabled selected>Select Car</option>
                                     <option value="i10">Hyundai i10</option>
                                     <option value="Liva">Toyota Liva</option>
@@ -556,6 +498,28 @@ if (isset($_POST['book-admission'])) {
                 }
             }
         </script>
+         <script>
+        function loadCarContent(car) {
+            $.ajax({
+                url: car + '.php',
+                type: 'GET',
+                success: function(data) {
+                    $('#timeSlotsContainer').html(data);
+                },
+                error: function() {
+                    $('#timeSlotsContainer').html('Error loading car content.');
+                }
+            });
+        }
+
+        const carNameSelect = document.getElementById('carName');
+        carNameSelect.addEventListener('change', function() {
+            const selectedCar = this.value;
+            if (selectedCar) {
+                loadCarContent(selectedCar);
+            }
+        });
+    </script>
 </body>
 
 </html>
