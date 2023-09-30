@@ -6,7 +6,7 @@ session_start();
 
 if (!isset($_SESSION['staff_name'])) {
 
-    $base_url = '/Billing_Software/';
+    // $base_url = '/Billing_Software/';
 
     // Define the file name to search for
     $file_to_find = 'login_form.php';

@@ -253,7 +253,14 @@ if (isset($_POST['book-admission'])) {
     <link rel="shortcut icon" type="image/png" href="../assets/logo.png" />
     <link rel="stylesheet" href="../css/navbar.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #tempcarinput::placeholder {
+            color: red;
+            font-weight: 500;
+        }
+    </style>
     <title>Admission Form</title>
+    
 </head>
 
 <body>
@@ -353,13 +360,14 @@ if (isset($_POST['book-admission'])) {
                         </div>
 
                         <div class="input-field" id="timeSlotsContainer">
-                            
+                        <label>‎ </label>
+                        <input type="text" id="tempcarinput" placeholder="Select A Car To Select Timeslot" disabled>
                         </div>
 
 
                         <div class="input-field">
                             <label>Select vehicle</label>
-                            <select name="vehicle" onchange="showFields(this)" required>
+                            <select name="vehicle" onchange="showFields(this)" id="selectVehicle" required>
                                 <option disabled selected>Select Vehicle</option>
                                 <option value="4wheeler">Four Wheeler</option>
                                 <option value="2wheeler">Two Wheeler</option>
@@ -497,26 +505,60 @@ if (isset($_POST['book-admission'])) {
             }
         </script>
         <script>
-        function loadCarContent(car) {
-            $.ajax({
-                url: car + '.php',
-                type: 'GET',
-                success: function(data) {
-                    $('#timeSlotsContainer').html(data);
-                },
-                error: function() {
-                    $('#timeSlotsContainer').html('Error loading car content.');
+        function updateSelected(dropdown, selectedValue) {
+                dropdown.val(selectedValue);
+            }
+            function loadCarContent(car) {
+                $.ajax({
+                    url: '../cars/' + car + '.php',
+                    type: 'GET',
+                    success: function (data) {
+                        $('#timeSlotsContainer').html(data);
+                    },
+                    error: function () {
+                        $('#timeSlotsContainer').html('Error loading car content.');
+                    }
+                });
+            }
+            function loadBikeContent(bike) {
+                $.ajax({
+                    url: '../cars/bike.php',
+                    type: 'GET',
+                    success: function (data) {
+                        $('#timeSlotsContainer').html(data);
+                    },
+                    error: function () {
+                        $('#timeSlotsContainer').html('Error loading bike content.');
+                    }
+                });
+            }
+            const twowheeler = document.getElementById('selectVehicle');
+            const carNameSelect = document.getElementById('carName');
+
+            twowheeler.addEventListener('change', function () {
+
+                const cartemp1 = document.getElementById('carName');
+
+                if (twowheeler.value === '4wheeler') {
+                    cartemp1.value = 'i10';
+                    loadCarContent('i10');
+                }
+                else if(twowheeler.value === '2wheeler'){
+                    const selectedBike = this.value;
+                    console.log(selectedBike);
+                    if(selectedBike) {
+                        loadBikeContent(selectedBike);
+                    }
                 }
             });
-        }
 
-        const carNameSelect = document.getElementById('carName');
-        carNameSelect.addEventListener('change', function() {
-            const selectedCar = this.value;
-            if (selectedCar) {
-                loadCarContent(selectedCar);
-            }
-        });
+
+            carNameSelect.addEventListener('change', function () {
+                const selectedCar = this.value;
+                if (selectedCar) {
+                    loadCarContent(selectedCar);
+                }
+            });
     </script>
 </body>
 
