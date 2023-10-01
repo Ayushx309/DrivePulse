@@ -190,6 +190,7 @@ if (isset($_POST['modify'])) {
     <!-- Boxicons -->
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://kit.fontawesome.com/3db79b918b.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <!-- My CSS -->
     <link rel="stylesheet" href="../../css/adminDashboard.css">
@@ -221,10 +222,15 @@ if (isset($_POST['modify'])) {
         }
 
         .modifyData input[type="text"],
-        .modifyData select {
+        .modifyData select,
+        #timeSlotsContainer select {
             padding: 10px;
             border-radius: 3px;
             border: 1px solid #ccc;
+        }
+
+        #timeSlotsContainer select {
+            width: 100%;
         }
 
         .modifyData input[type="submit"] {
@@ -421,67 +427,12 @@ if (isset($_POST['modify'])) {
                         <input type="text" name="phone" value="<?php echo $phone; ?>" readonly>
                         <input type="text" name="vehicle" value="<?php echo $vehicle; ?>" readonly>
                         <input type="text" name="trainer" value="<?php echo $trainer; ?>" readonly>
-                        <select required name="time-slot">
-                            <option disabled selected>Select Time Slot</option>
 
-                            <?php
-                            $timeSlots = array(
-                                "7:00am to 7:30am",
-                                "7:30am to 8:00am",
-                                "8:00am to 8:30am",
-                                "8:30am to 9:00am",
-                                "9:00am to 9:30am",
-                                "9:30am to 10:00am",
-                                "10:00am to 10:30am",
-                                "10:30am to 11:00am",
-                                "11:00am to 11:30am",
-                                "11:30am to 12:00pm",
-                                "12:00pm to 12:30pm",
-                                "12:30pm to 1:00pm",
-                                "1:00pm to 1:30pm",
-                                "1:30pm to 2:00pm",
-                                "2:00pm to 2:30pm",
-                                "2:30pm to 3:00pm",
-                                "3:00pm to 3:30pm",
-                                "3:30pm to 4:00pm",
-                                "4:00pm to 4:30pm",
-                                "4:30pm to 5:00pm",
-                                "5:00pm to 5:30pm",
-                                "5:30pm to 6:00pm",
-                                "6:00pm to 6:30pm",
-                                "6:30pm to 7:00pm",
-                                "7:00pm to 7:30pm",
-                                "7:30pm to 8:00pm"
-                            );
-                            $car = $_GET['car'];
-                            if ($car == 'i10') {
-                                $cardb = 'car_one';
-                            } elseif ($car == 'liva') {
-                                $cardb = 'car_two';
-                            }
 
-                            foreach ($timeSlots as $index => $slot) {
-                                $i = $index + 2;
-                                $carquery = "SELECT * FROM $cardb WHERE id=$i";
-                                $carquery1 = mysqli_query($conn, $carquery);
+                        <div id="timeSlotsContainer">
+                        </div>
 
-                                while ($row = mysqli_fetch_assoc($carquery1)) {
-                                    $status = $row['status'];
-                                    $selectedTimeSlot = $timeSlotDB;
-                                    if ($status == "empty") {
-                                        echo "<option value='$slot'>$slot</option>";
-                                    }
-                                    if ($status == "active") {
-                                        $selected = ($slot === $selectedTimeSlot) ? "selected style='background-color: green; color: white; font-weight: 700;'" : "disabled style='background-color: red; color: white; font-weight: 700;'";
-                                        $status = ($slot === $selectedTimeSlot) ? "(Current)" : "(Occupied)";
-                                        echo "<option value='$slot' $selected >$slot $status</option>";
-                                    }
-                                }
-                            }
-                            ?>
-                        </select>
-
-                        <select name="carName">
+                        <select name="carName" id="carSelect">
                             <option disabled>Select Car</option>
                             <?php
 
@@ -511,6 +462,39 @@ if (isset($_POST['modify'])) {
 
     <script src="../../js/sweetalert.js"></script>
     <script src="../../js/script.js"></script>
+
+    <script>
+
+        function updateSelected(dropdown, selectedValue) {
+            dropdown.val(selectedValue);
+        }
+        function loadCarContent(car) {
+            $.ajax({
+                url: './cars/' + car + '.php',
+                type: 'GET',
+                data: { selected: <?php $_SESSION['carTimeSlotSelected'] = $timeSlotDB;
+                $_SESSION['carSelected'] = $_GET['car']; ?> "" },
+                success: function (data) {
+                    $('#timeSlotsContainer').html(data);
+                },
+                error: function () {
+                    $('#timeSlotsContainer').html('Error loading car content.');
+                }
+            });
+        }
+
+
+        const carNameSelect = document.getElementById('carSelect');
+        loadCarContent(carNameSelect.value);
+
+        carNameSelect.addEventListener('change', function () {
+            const selectedCar = this.value;
+            if (selectedCar) {
+                loadCarContent(selectedCar);
+
+            }
+        });
+    </script>
 
 </body>
 
