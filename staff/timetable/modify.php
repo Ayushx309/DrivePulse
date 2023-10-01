@@ -425,7 +425,6 @@ if (isset($_POST['modify'])) {
                             <option disabled selected>Select Time Slot</option>
 
                             <?php
-
                             $timeSlots = array(
                                 "7:00am to 7:30am",
                                 "7:30am to 8:00am",
@@ -454,11 +453,30 @@ if (isset($_POST['modify'])) {
                                 "7:00pm to 7:30pm",
                                 "7:30pm to 8:00pm"
                             );
+                            $car = $_GET['car'];
+                            if ($car == 'i10') {
+                                $cardb = 'car_one';
+                            } elseif ($car == 'liva') {
+                                $cardb = 'car_two';
+                            }
 
-                            $selectedTimeSlot = $timeSlotDB;
-                            foreach ($timeSlots as $timeSlot) {
-                                $selected = ($timeSlot === $selectedTimeSlot) ? "selected" : "";
-                                echo "<option value='$timeSlot' $selected>$timeSlot</option>";
+                            foreach ($timeSlots as $index => $slot) {
+                                $i = $index + 2;
+                                $carquery = "SELECT * FROM $cardb WHERE id=$i";
+                                $carquery1 = mysqli_query($conn, $carquery);
+
+                                while ($row = mysqli_fetch_assoc($carquery1)) {
+                                    $status = $row['status'];
+                                    $selectedTimeSlot = $timeSlotDB;
+                                    if ($status == "empty") {
+                                        echo "<option value='$slot'>$slot</option>";
+                                    }
+                                    if ($status == "active") {
+                                        $selected = ($slot === $selectedTimeSlot) ? "selected style='background-color: green; color: white; font-weight: 700;'" : "disabled style='background-color: red; color: white; font-weight: 700;'";
+                                        $status = ($slot === $selectedTimeSlot) ? "(Current)" : "(Occupied)";
+                                        echo "<option value='$slot' $selected >$slot $status</option>";
+                                    }
+                                }
                             }
                             ?>
                         </select>
