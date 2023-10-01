@@ -1,4 +1,9 @@
 # DrivePulse - Driving School Management System
+![](https://img.shields.io/github/repo-size/Ayushx309/DrivePulse)
+![](https://img.shields.io/github/downloads/Ayushx309/DrivePulse/total)
+![](https://img.shields.io/github/v/release/Ayushx309/Drivepulse)
+![](https://img.shields.io/github/forks/Ayushx309/Drivepulse)
+![](https://img.shields.io/github/stars/Ayushx309/Drivepulse)
 
 ![](https://cdn.discordapp.com/attachments/839435729993072660/1157034938504314880/20230929_005212__01.png?ex=65172442&is=6515d2c2&hm=87418c5e01276643c8ba46bb7d3c1f2c0555b0bf72b30466cebe233386a703e7&)
 
@@ -69,7 +74,6 @@ For more detailed installation instructions, please refer to the [Installation G
 
 
 ## Contributors
-
 - [Ayush Joshi](https://github.com/Ayushx309)
 - [Jaymin Gohil](https://github.com/x0tic0p)
 
