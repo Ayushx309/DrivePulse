@@ -1,6 +1,5 @@
 # DrivePulse - Driving School Management System
 ![](https://img.shields.io/github/repo-size/Ayushx309/DrivePulse)
-![](https://img.shields.io/github/downloads/Ayushx309/DrivePulse/total)
 ![](https://img.shields.io/github/v/release/Ayushx309/Drivepulse)
 ![](https://img.shields.io/github/forks/Ayushx309/Drivepulse)
 ![](https://img.shields.io/github/stars/Ayushx309/Drivepulse)
