@@ -23,6 +23,12 @@ RUN apt-get install -y --no-install-recommends openssl \
     && rm -rf /var/lib/apt/lists/*
 RUN apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
+# Install composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && composer self-update --1
+
+RUN composer install
+
 # install Docker tools (cli, buildx, compose)
 COPY --from=gloursdocker/docker / /
 
