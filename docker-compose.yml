@@ -4,7 +4,7 @@ services:
     build:
       context: .
       target: builder
-      dockerfile: Dockerfile
+      dockerfile: Docker/php/Dockerfile
     volumes:
       - ./:/var/www/html
       - ./Docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
@@ -27,12 +27,14 @@ services:
     networks:
       - driving
   mysql:
-    image: mysql:latest
+    build:
+      context: .
+      dockerfile: Docker/mysql/Dockerfile
     environment:
       MYSQL_ROOT_PASSWORD: password
-      MYSQL_DATABASE: wordpress
-      MYSQL_USER: wordpress
-      MYSQL_PASSWORD: wordpress
+      MYSQL_DATABASE: billing
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
     volumes:
       - mysql_data:/var/lib/mysql
     networks:
