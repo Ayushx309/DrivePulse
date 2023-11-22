@@ -7,6 +7,7 @@ LABEL maintainer="Kamlekar"
 # Set working directory
 WORKDIR /var/www/html
 
+RUN docker-php-ext-install mysqli
 CMD ["apache2-foreground"]
 
 FROM builder as dev-envs
