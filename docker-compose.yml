@@ -7,6 +7,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./:/var/www/html
+      - ./Docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     ports:
       - 8080:80
     depends_on:
