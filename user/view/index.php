@@ -110,7 +110,9 @@
 
 
 <?php
-    $connect = mysqli_connect("localhost", "root", "", "billing");
+    include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/mysqlconnection.php');
+
+    $connect = mySqlConnection(); 
         $backRoute = '';
     if (isset($_GET['id'])) {
         $backRoute = $_GET['route'];

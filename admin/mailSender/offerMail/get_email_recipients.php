@@ -1,6 +1,8 @@
 <?php
 // Replace with your database connection code
-$conn = mysqli_connect("localhost", "root", "", "billing");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/mysqlconnection.php');
+
+$conn = mySqlConnection(); 
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

@@ -1,5 +1,7 @@
 <?php
-$connect = mysqli_connect("localhost", "root", "", "billing");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/mysqlconnection.php');
+
+$connect = mySqlConnection(); 
 $sql = "SELECT * FROM cust_details";  
 $result = mysqli_query($connect, $sql);
 ?>

@@ -45,12 +45,13 @@ function uploadImageToHostedServer($imageFilePath, $uploadUrl)
 <?php
 require '../../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require '../../../vendor/phpmailer/phpmailer/src/SMTP.php';
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/mysqlconnection.php');
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 
-// Replace with your database connection code
-$conn = mysqli_connect("localhost", "root", "", "billing");
+
+$conn = mySqlConnection(); 
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);

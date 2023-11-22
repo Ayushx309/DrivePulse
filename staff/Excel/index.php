@@ -1,6 +1,8 @@
 <?php  
 //export.php  
-$connect = mysqli_connect("localhost", "root", "", "billing");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/mysqlconnection.php');
+
+$connect = mySqlConnection(); 
 $output = '';
 if(isset($_GET["export"]))
 {

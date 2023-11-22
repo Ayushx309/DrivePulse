@@ -1,9 +1,7 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/mysqlconnection.php');
 $database = "billing";
-$conn = new mysqli($servername, $username, $password);
+$conn = mySqlConnection(); 
 
 $sqlDumpFile = "./sql/execute.db";
 

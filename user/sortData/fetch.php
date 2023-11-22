@@ -1,7 +1,9 @@
 <?php
 session_start();
 
-$connect = mysqli_connect("localhost", "root", "", "billing");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/mysqlconnection.php');
+
+$connect = mySqlConnection(); 
 $columns = array(
     'id',
     'name',

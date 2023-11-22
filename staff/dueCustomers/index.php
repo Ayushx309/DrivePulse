@@ -1,8 +1,10 @@
 <?php
 
 include('../../includes/authenticationStaff.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/mysqlconnection.php');
 date_default_timezone_set('Asia/Kolkata');
-$conn = mysqli_connect("localhost", "root", "", "billing");
+
+$conn = mySqlConnection(); 
 
 ?>
 
