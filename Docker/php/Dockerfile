@@ -9,6 +9,9 @@ WORKDIR /var/www/html
 
 RUN docker-php-ext-install mysqli
 CMD ["apache2-foreground"]
+COPY . .
+
+RUN a2enmod rewrite
 
 FROM builder as dev-envs
 
