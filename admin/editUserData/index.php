@@ -1,5 +1,7 @@
 <?php
 
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/mysqlconnection.php');
+
 session_start();
 function logActivity($logType, $who, $activity)
 {
@@ -39,8 +41,7 @@ if (isset($_POST['edit'])) {
 
 
 
-
-    $conn = mysqli_connect("localhost", "root", "", "billing");
+    $conn = mySqlConnection(); 
 
     // Personal Details
     $name = $_POST['name'];
@@ -269,7 +270,8 @@ if (isset($_POST['edit'])) {
 
 
     <?php
-    $connect = mysqli_connect("localhost", "root", "", "billing");
+    
+    $connect = mySqlConnection(); 
     $backRoute = '';
     if (isset($_GET['id'])) {
         $id = $_GET['id'];
@@ -472,7 +474,7 @@ if (isset($_POST['edit'])) {
       
             <?php
             $tables = array("i10" => "car_one", "Liva" => "car_two");
-            $conn = mysqli_connect("localhost", "root", "", "billing");
+            $conn = mySqlConnection(); 
 
             if (isset($_POST['DELid'])) {
                 $id = $_POST['DELid'];

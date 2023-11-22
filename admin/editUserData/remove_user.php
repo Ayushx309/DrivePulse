@@ -1,5 +1,7 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "billing");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/mysqlconnection.php');
+
+$conn = mySqlConnection(); 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     // Get the user ID from the POST data

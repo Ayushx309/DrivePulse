@@ -2,7 +2,9 @@
 <?php
 
 
-$connect = mysqli_connect("localhost", "root", "", "billing");
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/mysqlconnection.php');
+
+$connect = mySqlConnection(); 
 
 if(isset($_GET["id"]))
 {

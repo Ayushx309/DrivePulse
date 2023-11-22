@@ -1,10 +1,8 @@
 <?php
 
 include('../../includes/authentication.php');
+include_once($_SERVER['DOCUMENT_ROOT'] . '/includes/mysqlconnection.php');
 date_default_timezone_set('Asia/Kolkata');
-
-
-
 
 ?>
 
@@ -247,7 +245,7 @@ date_default_timezone_set('Asia/Kolkata');
 
 
             <?php
-            $connect = mysqli_connect("localhost", "root", "", "billing");
+            $connect = mySqlConnection(); 
             $backRoute = '';
             if (isset($_GET['id'])) {
 
