@@ -2,8 +2,8 @@
 
 $server = "localhost";
 $username = "root";
-$password = "";
-$database = "billing";
+$password = "secret";
+$database = "mydatabase";
 
 $conn = mysqli_connect($server, $username, $password, $database);
 $base_url = __DIR__;
