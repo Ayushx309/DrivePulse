@@ -13,6 +13,9 @@ COPY . .
 
 RUN a2enmod rewrite
 
+# Copy your custom httpd.conf file into the container
+COPY ./Docker/php/httpd.conf /etc/apache2/apache2.conf
+
 FROM builder as dev-envs
 
 RUN apt-get update
