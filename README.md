@@ -54,7 +54,8 @@ We are continuously working to improve and expand DrivePulse. Here are some of t
 - **User Dashboard Enhancements:** Enhance the user dashboard with additional tools for more intuitive booking management and progress tracking.
 - **Offer Mailing Section:** Introduce a dedicated section for managing discount offers and promotional email campaigns.
 
-Please note that this is not the final version of DrivePulse, and we will be actively updating and refining the project to provide an even better driving school management experience.
+> [!NOTE]\
+> Please note that this is not the final version of DrivePulse, and we will be actively updating and refining the project to provide an even better driving school management experience.
 
 
 ## Installation and Usage
