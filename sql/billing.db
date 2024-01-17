@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `car_one` (
   `end_date` date NOT NULL,
   `status` varchar(56) NOT NULL DEFAULT 'empty',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `car_one`
@@ -96,7 +96,7 @@ CREATE TABLE IF NOT EXISTS `car_two` (
   `end_date` date NOT NULL,
   `status` varchar(56) NOT NULL DEFAULT 'empty',
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `car_two`
@@ -161,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `cust_details` (
   `startedAT` date NOT NULL,
   `formfiller` varchar(256) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 
 -- --------------------------------------------------------
@@ -179,7 +179,7 @@ CREATE TABLE IF NOT EXISTS `users_db` (
   `permissions` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT 'user',
   `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `users_db`
