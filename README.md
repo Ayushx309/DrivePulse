@@ -13,7 +13,14 @@ DrivePulse is a comprehensive driving school management system designed to strea
 > [!NOTE]\
 > Please note that for demo purposes, we have used the name [Patel Motor Driving School](https://goo.gl/maps/HaC1BxXnCFTbGZFB8).  Feel free to replace this name with your own driving school's name as you customize the project for your own use.
 
+
+
+
+
 ## ScreenShots
+
+
+[Demo Video](https://drive.google.com/file/d/1oOghAbgx4isIbcyc_6fWLyZFwil4SJyf/preview)
 
 ![](https://cdn.discordapp.com/attachments/839435729993072660/1156859261096296508/image.png?ex=651680a5&is=65152f25&hm=90faaf33e2200e0d39621f72e6181a64eefc0c5f90e259d23086a4aee6085064&)
 ![](https://cdn.discordapp.com/attachments/839435729993072660/1156859441627541597/image.png?ex=651680d0&is=65152f50&hm=90f087909c83769f6dfeae5385093b54193cedeb918b77c31b9c2fb58cb208e6&)
