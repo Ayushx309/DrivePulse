@@ -10,7 +10,8 @@ Comprehensive Driving School Management Website
 
 DrivePulse is a comprehensive driving school management system designed to streamline administrative tasks, enhance communication between trainers and learners, and provide a user-friendly experience for all stakeholders. The system is built using a combination of HTML, CSS, JavaScript, PHP, and MySQL, along with various libraries and tools to optimize functionality.
 
-- Please note that for demo purposes, we have used the name [Patel Motor Driving School](https://goo.gl/maps/HaC1BxXnCFTbGZFB8).  Feel free to replace this name with your own driving school's name as you customize the project for your own use.
+> [!NOTE]\
+> Please note that for demo purposes, we have used the name [Patel Motor Driving School](https://goo.gl/maps/HaC1BxXnCFTbGZFB8).  Feel free to replace this name with your own driving school's name as you customize the project for your own use.
 
 ## ScreenShots
 
