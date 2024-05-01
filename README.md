@@ -89,7 +89,7 @@ For more detailed installation instructions, please refer to the [Installation G
 
 ## Communication
 
-If you need support for the DrivePulse Project &  want to chat with other devs join the [Xotic Gamer](https://discord.gg/VfWQ7YcD6Q) Discord srever.
+If you need support for the DrivePulse Project &  want to chat with other devs join the [Pain's Hub](https://discord.gg/QFgahb9Ges) Discord srever.
 
 [![](https://discord.com/api/guilds/519527459620651011/embed.png)](https://discord.gg/VfWQ7YcD6Q) 
 
