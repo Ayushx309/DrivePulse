@@ -152,7 +152,7 @@ DrivePulse combines powerful management tools with intuitive interfaces to provi
 
 #### Key Components:
 
-<table>
+<table align="center">
   <tr>
     <td width="50%" valign="top">
       <h4>1️⃣ Admin Dashboard</h4>
