@@ -239,18 +239,18 @@ DrivePulse combines powerful management tools with intuitive interfaces to provi
 </div>
 
 <div align="center">
-  <img src="https://cdn.discordapp.com/attachments/1144273100112932914/1235157703798554664/image-1.png?ex=663359c0&is=66320840&hm=443707c8bdb81fa373578c9c6438efd3c12b5a19e7ee09075d57734a822d2f81&" alt="Screenshot 1" width="400"/>
-  <img src="https://cdn.discordapp.com/attachments/1144273100112932914/1235157703199035392/image-2.png?ex=663359c0&is=66320840&hm=043a8d1740510e96d5ef815e795c3ae8c8a6ffa646f6d3d8a8be5d7f08ce2a2a&" alt="Screenshot 2" width="400"/>
+  <img src="https://eternalbytes.in/assets/ss/DrivePulse_SS/image-1.png" alt="Screenshot 1" width="400"/>
+  <img src="https://eternalbytes.in/assets/ss/DrivePulse_SS/image-2.png" alt="Screenshot 2" width="400"/>
 </div>
 
 <div align="center">
-  <img src="https://cdn.discordapp.com/attachments/1144273100112932914/1235157702573948968/image-3.png?ex=663359c0&is=66320840&hm=d22f435a0fdb4ae55bba1f0ef657550b091124d88ef86389dfa3616385560f8b&" alt="Screenshot 3" width="400"/>
-  <img src="https://cdn.discordapp.com/attachments/1144273100112932914/1235157701579767938/image-4.png?ex=663359c0&is=66320840&hm=c1d0683d59afd738e7c0ded62dc9f59b7dcc6ef03636e0d0dfd5622d223a20b4&" alt="Screenshot 4" width="400"/>
+  <img src="https://eternalbytes.in/assets/ss/DrivePulse_SS/image-3.png" alt="Screenshot 3" width="400"/>
+  <img src="https://eternalbytes.in/assets/ss/DrivePulse_SS/image-4.png" alt="Screenshot 4" width="400"/>
 </div>
 
 <div align="center">
-  <img src="https://cdn.discordapp.com/attachments/1144273100112932914/1235157701064134696/image-5.png?ex=663359c0&is=66320840&hm=3574c41d06276a152284dd85f168a5daecb2031c582e81bfcc503b2d441fe384&" alt="Screenshot 5" width="400"/>
-  <img src="https://cdn.discordapp.com/attachments/1144273100112932914/1235157700350836756/image-6.png?ex=663359bf&is=6632083f&hm=fd64a37ac6df4b620f1cda88fb0a8000ba25cface83fc256dc693089c1d6d9a4&" alt="Screenshot 6" width="400"/>
+  <img src="https://eternalbytes.in/assets/ss/DrivePulse_SS/image-5.png" alt="Screenshot 5" width="400"/>
+  <img src="https://eternalbytes.in/assets/ss/DrivePulse_SS/image-6.png" alt="Screenshot 6" width="400"/>
 </div>
 
 ---
