@@ -394,7 +394,7 @@ For more detailed installation instructions, please refer to the [Installation G
 
 <div align="center">
   <p>If you need support for the DrivePulse Project & want to chat with other devs join the <a href="https://discord.gg/QFgahb9Ges">Pain's Hub</a> Discord server.</p>
-  <a href="https://discord.gg/VfWQ7YcD6Q">
+  <a href="https://discord.gg/QFgahb9Ges">
     <img src="https://discord.com/api/guilds/519527459620651011/embed.png" alt="Discord Server"/>
   </a>
 </div>
