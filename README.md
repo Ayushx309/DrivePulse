@@ -24,7 +24,7 @@ DrivePulse is a comprehensive driving school management system designed to strea
 
 <div align="center">
   <h3>✨ Transform Your Driving School Operations ✨</h3>
-  <p>A fully working enhanced version of DrivePulse is available for purchase at <a href="https://eternalbytes.in/services/drivepulse">Eternal Bytes</a>.</p>
+  <p>A fully working enhanced version of DrivePulse is available for purchase at <a href="https://eternalbytes.in/services/driving-school-management-system.html">Eternal Bytes</a>.</p>
 </div>
 
 <div align="center">
@@ -225,7 +225,7 @@ DrivePulse combines powerful management tools with intuitive interfaces to provi
 
 <div align="center">
   <h3>🔍 Ready to transform your driving school?</h3>
-  <p>Visit <a href="https://eternalbytes.in/services/drivepulse">Eternal Bytes</a> to learn more and purchase the full version.</p>
+  <p>Visit <a href="https://eternalbytes.in/services/driving-school-management-system.html">Eternal Bytes</a> to learn more and purchase the full version.</p>
 </div>
 
 ---
